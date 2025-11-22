@@ -75,7 +75,7 @@ const VideoSection = () => {
   }, [player, tracked]);
 
   return (
-    <section id="video-section" className="py-20 px-4 bg-sand/30">
+    <section id="video-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-sand/30">
       <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -97,10 +97,10 @@ const VideoSection = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mt-6 flex items-start gap-3 p-4 bg-accent/50 rounded-2xl"
+            className="mt-4 sm:mt-6 flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-accent/50 rounded-xl sm:rounded-2xl"
           >
-            <AlertCircle className="w-5 h-5 text-accent-foreground flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-accent-foreground">
+            <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-accent-foreground flex-shrink-0 mt-0.5" />
+            <p className="text-xs sm:text-sm text-accent-foreground">
               <strong>Conteúdo informativo:</strong> Este vídeo tem caráter
               educacional. A avaliação médica individual é indispensável para
               indicação do procedimento.
