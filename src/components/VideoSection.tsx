@@ -24,7 +24,7 @@ const VideoSection = () => {
     window.onYouTubeIframeAPIReady = () => {
       // @ts-ignore
       const ytPlayer = new YT.Player("youtube-player", {
-        videoId: "XXXXXXXXXXX", // Replace with actual video ID
+        videoId: "KlA2FGbBdWs",
         playerVars: {
           enablejsapi: 1,
           origin: window.location.origin,

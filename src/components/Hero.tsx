@@ -19,9 +19,8 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="space-y-4 sm:space-y-6 text-center md:text-left"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-graphite leading-tight">
-              Tudo o que você precisa saber sobre a{" "}
-              <span className="text-primary">blefaroplastia</span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-graphite leading-tight">
+              Tudo o que você precisa saber sobre a <span className="text-primary">blefaroplastia</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
               Assista ao vídeo da Dra. Thayssa e entenda indicações, como é o

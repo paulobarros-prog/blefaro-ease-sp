@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import logo from "@/assets/logo-dra-thayssa.png";
 
 const Footer = () => {
@@ -36,12 +36,6 @@ const Footer = () => {
               </a>
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/80">
-              <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-              <a href="mailto:contato@drathayssa.com.br" className="hover:text-white transition-colors break-all">
-                contato@drathayssa.com.br
-              </a>
-            </div>
           </div>
         </div>
 
@@ -49,14 +43,6 @@ const Footer = () => {
           <p className="mb-2">
             © {new Date().getFullYear()} Dra. Thayssa Barreto. Todos os direitos reservados.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 mt-3 sm:mt-4">
-            <a href="#" className="hover:text-white transition-colors">
-              Política de Privacidade
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              LGPD
-            </a>
-          </div>
           <p className="mt-3 sm:mt-4 text-xs px-4">
             Este site possui caráter informativo e não substitui avaliação médica presencial.
           </p>
