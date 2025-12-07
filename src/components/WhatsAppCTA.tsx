@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react";
 
 const WhatsAppCTA = () => {
   const whatsappMessage = encodeURIComponent(
-    "Olá, acabei de ver o vídeo sobre blefaroplastia da Dra. Thayssa. Meu incômodo é [pálpebra superior / pálpebra inferior / bolsas]. Gostaria de saber próximos passos e sobre avaliação."
+    "Olá, acabei de ver o vídeo sobre blefaroplastia da Dra. Thayssa. Gostaria de saber próximos passos e sobre avaliação."
   );
 
   const whatsappLink = `https://wa.me/5511932366856?text=${whatsappMessage}&utm_source=meta&utm_medium=cpc&utm_campaign=lp_blefaro`;
