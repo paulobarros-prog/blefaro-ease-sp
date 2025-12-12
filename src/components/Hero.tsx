@@ -3,8 +3,21 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/dra-thayssa-hero.jpg";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 const Hero = () => {
   const scrollToVideo = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'cta_hero_click',
+      eventCategory: 'engagement',
+      eventAction: 'click',
+      eventLabel: 'assistir_video_agora'
+    });
     const videoSection = document.getElementById("video-section");
     videoSection?.scrollIntoView({ behavior: "smooth" });
   };

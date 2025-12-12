@@ -3,6 +3,22 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
+const pushDataLayerEvent = (eventName: string, label: string) => {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    eventCategory: 'video',
+    eventAction: 'progress',
+    eventLabel: label
+  });
+};
+
 const VideoSection = () => {
   const [player, setPlayer] = useState<any>(null);
   const [tracked, setTracked] = useState({
@@ -40,7 +56,7 @@ const VideoSection = () => {
   const onPlayerStateChange = (event: any) => {
     // @ts-ignore
     if (event.data === YT.PlayerState.PLAYING && !tracked.play) {
-      console.log("Video play event");
+      pushDataLayerEvent('video_play', 'video_started');
       setTracked((prev) => ({ ...prev, play: true }));
     }
   };
@@ -54,19 +70,19 @@ const VideoSection = () => {
       const progress = (currentTime / duration) * 100;
 
       if (progress >= 25 && !tracked["25"]) {
-        console.log("Video 25% event");
+        pushDataLayerEvent('video_progress_25', 'video_25_percent');
         setTracked((prev) => ({ ...prev, "25": true }));
       }
       if (progress >= 50 && !tracked["50"]) {
-        console.log("Video 50% event");
+        pushDataLayerEvent('video_progress_50', 'video_50_percent');
         setTracked((prev) => ({ ...prev, "50": true }));
       }
       if (progress >= 75 && !tracked["75"]) {
-        console.log("Video 75% event");
+        pushDataLayerEvent('video_progress_75', 'video_75_percent');
         setTracked((prev) => ({ ...prev, "75": true }));
       }
       if (progress >= 99 && !tracked["100"]) {
-        console.log("Video 100% event");
+        pushDataLayerEvent('video_progress_100', 'video_100_percent');
         setTracked((prev) => ({ ...prev, "100": true }));
       }
     }, 1000);

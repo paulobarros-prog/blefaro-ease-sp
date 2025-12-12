@@ -2,6 +2,12 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 const WhatsAppCTA = () => {
   const whatsappMessage = encodeURIComponent(
     "Olá, acabei de ver o vídeo sobre blefaroplastia da Dra. Thayssa. Gostaria de saber próximos passos e sobre avaliação."
@@ -10,7 +16,13 @@ const WhatsAppCTA = () => {
   const whatsappLink = `https://wa.me/5511932366856?text=${whatsappMessage}&utm_source=meta&utm_medium=cpc&utm_campaign=lp_blefaro`;
 
   const handleClick = () => {
-    console.log("WhatsApp CTA clicked");
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'whatsapp_click',
+      eventCategory: 'engagement',
+      eventAction: 'click',
+      eventLabel: 'whatsapp_cta'
+    });
     window.open(whatsappLink, "_blank");
   };
 
