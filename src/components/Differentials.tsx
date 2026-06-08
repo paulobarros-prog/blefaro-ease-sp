@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { UserCheck, ClipboardList, ShieldCheck, HeartHandshake } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { UserCheck, ClipboardList, ShieldCheck, HeartHandshake, MessageCircle } from "lucide-react";
 
 const items = [
   {
