@@ -5,6 +5,11 @@ import WhatsAppCTA from "@/components/WhatsAppCTA";
 import FAQSection from "@/components/FAQSection";
 import DoctorBio from "@/components/DoctorBio";
 import Footer from "@/components/Footer";
+import Indications from "@/components/Indications";
+import AboutProcedure from "@/components/AboutProcedure";
+import Benefits from "@/components/Benefits";
+import Recovery from "@/components/Recovery";
+import Differentials from "@/components/Differentials";
 
 const Index = () => {
   return (
@@ -12,10 +17,15 @@ const Index = () => {
       <Header />
       <main className="pt-20">
         <Hero />
+        <Indications />
         <VideoSection />
-        <WhatsAppCTA />
-        <FAQSection />
+        <AboutProcedure />
+        <Benefits />
+        <Recovery />
+        <Differentials />
         <DoctorBio />
+        <FAQSection />
+        <WhatsAppCTA />
       </main>
       <Footer />
     </div>

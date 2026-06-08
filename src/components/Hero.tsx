@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MessageCircle } from "lucide-react";
 import heroImage from "@/assets/dra-thayssa-hero.jpg";
 
 declare global {
@@ -22,6 +22,23 @@ const Hero = () => {
     videoSection?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const openWhatsApp = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'whatsapp_click',
+      eventCategory: 'engagement',
+      eventAction: 'click',
+      eventLabel: 'hero_falar_equipe'
+    });
+    const msg = encodeURIComponent(
+      "Olá, vim pela página de blefaroplastia da Dra. Thayssa. Gostaria de saber sobre avaliação."
+    );
+    window.open(
+      `https://wa.me/5511932366856?text=${msg}&utm_source=meta&utm_medium=cpc&utm_campaign=lp_blefaro`,
+      "_blank"
+    );
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 overflow-hidden bg-gradient-to-b from-background via-sand/30 to-background">
       <div className="container mx-auto max-w-6xl">
@@ -39,14 +56,25 @@ const Hero = () => {
               Assista ao vídeo da Dra. Thayssa e entenda indicações, como é o
               procedimento e os cuidados do pós.
             </p>
-            <Button
-              size="lg"
-              onClick={scrollToVideo}
-              className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
-            >
-              Assistir vídeo agora
-              <ChevronDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+              <Button
+                size="lg"
+                onClick={scrollToVideo}
+                className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+              >
+                Assistir vídeo agora
+                <ChevronDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={openWhatsApp}
+                className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 w-full sm:w-auto"
+              >
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Falar com a equipe
+              </Button>
+            </div>
           </motion.div>
 
           <motion.div
