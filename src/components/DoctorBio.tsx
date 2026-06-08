@@ -31,8 +31,8 @@ const DoctorBio = () => {
 
               <div className="space-y-4 sm:space-y-6">
                 <div className="text-center md:text-left">
-                  <p className="text-sm text-primary font-semibold uppercase tracking-wide mb-1">
-                    Quem Sou
+                  <p className="text-sm text-primary font-bold uppercase tracking-wider mb-1">
+                    QUEM SOU
                   </p>
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-graphite mb-2">
                     Dra. Thayssa Barreto
@@ -50,7 +50,10 @@ const DoctorBio = () => {
                     Olá! Sou a Dra Thayssa Barreto, cirurgiã plástica com formação médica na Faculdade de Medicina de Jundiaí e residência em Cirurgia Geral e Cirurgia Plástica pelo IAMSPE/SP.
                   </p>
                   <p>
-                    Possuo título de especialista em Cirurgia Plástica pela Associação Médica Brasileira (AMB) e sou membro associado da Sociedade Brasileira de Cirurgia Plástica (SBCP). Conto ainda com registro de especialidade em Cirurgia Plástica emitido pelo Conselho Federal de Medicina, além de pós-graduação/fellow em Cosmiatria pelo renomado Instituto Boggio.
+                    Possuo título de especialista em Cirurgia Plástica pela Associação Médica Brasileira (AMB) e sou membro associado da Sociedade Brasileira de Cirurgia Plástica (SBCP).
+                  </p>
+                  <p>
+                    Conto ainda com registro de especialidade em Cirurgia Plástica emitido pelo Conselho Federal de Medicina, além de pós graduação/fellow em Cosmiatria pelo renomado Instituto Boggio.
                   </p>
                   <p>
                     Trago para meus pacientes o que há de mais avançado em procedimentos estéticos, cosmiátricos e reparadores. Venha conhecer meu trabalho e descobrir como posso ajudá-lo(a) a atingir seus objetivos com segurança e qualidade.
