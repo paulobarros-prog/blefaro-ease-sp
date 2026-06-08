@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { UserCheck, ClipboardList, ShieldCheck, HeartHandshake } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { UserCheck, ClipboardList, ShieldCheck, HeartHandshake, MessageCircle } from "lucide-react";
 
 const items = [
   {
@@ -30,6 +31,23 @@ const items = [
 ];
 
 const Differentials = () => {
+  const openWhatsApp = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'whatsapp_click',
+      eventCategory: 'engagement',
+      eventAction: 'click',
+      eventLabel: 'differentials_falar_equipe'
+    });
+    const msg = encodeURIComponent(
+      "Olá, gostaria de saber mais sobre o atendimento da Dra. Thayssa e agendar uma avaliação."
+    );
+    window.open(
+      `https://wa.me/5511932366856?text=${msg}&utm_source=meta&utm_medium=cpc&utm_campaign=lp_blefaro`,
+      "_blank"
+    );
+  };
+
   return (
     <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-background">
       <div className="container mx-auto max-w-6xl">
@@ -73,6 +91,23 @@ const Differentials = () => {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mt-8 sm:mt-12 text-center"
+        >
+          <Button
+            size="lg"
+            onClick={openWhatsApp}
+            className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto max-w-md mx-auto"
+          >
+            <MessageCircle className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform flex-shrink-0" />
+            <span className="truncate">Falar com a equipe</span>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

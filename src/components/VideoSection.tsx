@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { AlertCircle, MessageCircle } from "lucide-react";
 
 declare global {
   interface Window {
@@ -17,6 +18,23 @@ const pushDataLayerEvent = (eventName: string, label: string) => {
     eventAction: 'progress',
     eventLabel: label
   });
+};
+
+const openWhatsApp = () => {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'whatsapp_click',
+    eventCategory: 'engagement',
+    eventAction: 'click',
+    eventLabel: 'video_section_falar_equipe'
+  });
+  const msg = encodeURIComponent(
+    "Olá, acabei de ver o vídeo sobre blefaroplastia da Dra. Thayssa. Gostaria de saber próximos passos e sobre avaliação."
+  );
+  window.open(
+    `https://wa.me/5511932366856?text=${msg}&utm_source=meta&utm_medium=cpc&utm_campaign=lp_blefaro`,
+    "_blank"
+  );
 };
 
 const VideoSection = () => {
@@ -121,6 +139,23 @@ const VideoSection = () => {
               educacional. A avaliação médica individual é indispensável para
               indicação do procedimento.
             </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="mt-6 sm:mt-8 text-center"
+          >
+            <Button
+              size="lg"
+              onClick={openWhatsApp}
+              className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto max-w-md mx-auto"
+            >
+              <MessageCircle className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform flex-shrink-0" />
+              <span className="truncate">Falar com a equipe</span>
+            </Button>
           </motion.div>
         </motion.div>
       </div>
