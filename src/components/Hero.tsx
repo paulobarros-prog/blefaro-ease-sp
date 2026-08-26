@@ -1,42 +1,18 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, MessageCircle } from "lucide-react";
+import { ChevronDown, PlayCircle } from "lucide-react";
 import heroImage from "@/assets/dra-thayssa-hero.jpg";
-
-declare global {
-  interface Window {
-    dataLayer: any[];
-  }
-}
+import { pushEvent, scrollToId } from "@/lib/lp";
 
 const Hero = () => {
-  const scrollToVideo = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'cta_hero_click',
-      eventCategory: 'engagement',
-      eventAction: 'click',
-      eventLabel: 'assistir_video_agora'
-    });
-    const videoSection = document.getElementById("video-section");
-    videoSection?.scrollIntoView({ behavior: "smooth" });
+  const goToQualification = () => {
+    pushEvent("cta_click", { eventCategory: "engagement", eventLabel: "hero_quero_entender_meu_caso" });
+    scrollToId("qualificacao");
   };
 
-  const openWhatsApp = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'whatsapp_click',
-      eventCategory: 'engagement',
-      eventAction: 'click',
-      eventLabel: 'hero_falar_equipe'
-    });
-    const msg = encodeURIComponent(
-      "Olá, vim pela página de blefaroplastia da Dra. Thayssa. Gostaria de saber sobre avaliação."
-    );
-    window.open(
-      `https://wa.me/5511932366856?text=${msg}&utm_source=meta&utm_medium=cpc&utm_campaign=lp_blefaro`,
-      "_blank"
-    );
+  const goToVideo = () => {
+    pushEvent("cta_hero_click", { eventCategory: "engagement", eventLabel: "hero_assistir_explicacao" });
+    scrollToId("video");
   };
 
   return (
@@ -49,32 +25,39 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="space-y-4 sm:space-y-6 text-center md:text-left"
           >
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              Blefaroplastia em São Paulo
+            </p>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-graphite leading-tight">
-              Tudo o que você precisa saber sobre a <span className="text-primary">blefaroplastia</span>
+              Seu olhar parece mais <span className="text-primary">cansado</span> do que você realmente se sente?
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Assista ao vídeo da Dra. Thayssa e entenda indicações, como é o
-              procedimento e os cuidados do pós.
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              Entenda quando a Blefaroplastia pode fazer sentido e como uma
+              avaliação individualizada busca rejuvenescer a região dos olhos
+              preservando suas características e expressão.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
               <Button
                 size="lg"
-                onClick={scrollToVideo}
+                onClick={goToQualification}
                 className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
               >
-                Assistir vídeo agora
+                Quero entender meu caso
                 <ChevronDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                onClick={openWhatsApp}
+                onClick={goToVideo}
                 className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 w-full sm:w-auto"
               >
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Falar com a equipe
+                <PlayCircle className="mr-2 h-5 w-5" />
+                Assistir à explicação
               </Button>
             </div>
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              Dra. Thayssa Barreto · Cirurgiã Plástica · CRM 182.684 | RQE 101.756
+            </p>
           </motion.div>
 
           <motion.div
@@ -94,15 +77,6 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <ChevronDown className="w-8 h-8 text-primary animate-bounce" />
-      </motion.div>
     </section>
   );
 };
