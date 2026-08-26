@@ -9,3 +9,9 @@ export const pushEvent = (event: string, payload: Record<string, unknown> = {}) 
 export const scrollToId = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 };
+
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
