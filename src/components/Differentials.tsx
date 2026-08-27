@@ -1,53 +1,37 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { UserCheck, ClipboardList, ShieldCheck, HeartHandshake, MessageCircle } from "lucide-react";
+import { UserCheck, ClipboardList, ShieldCheck, HeartHandshake, ChevronDown } from "lucide-react";
+import { pushEvent, scrollToId } from "@/lib/lp";
 
 const items = [
   {
     icon: UserCheck,
-    title: "Avaliação individual completa",
+    title: "Escuta antes da técnica",
     description:
-      "Cada paciente é único. A consulta inclui análise detalhada da anatomia, expectativas e histórico de saúde.",
+      "A consulta começa entendendo o que incomoda você e o que espera da região dos olhos.",
   },
   {
     icon: ClipboardList,
-    title: "Planejamento personalizado",
+    title: "Planejamento individualizado",
     description:
-      "O procedimento é planejado considerando as particularidades de cada caso, buscando resultados naturais e harmônicos.",
+      "Cada anatomia é diferente. A conduta é definida caso a caso, sem soluções padronizadas.",
   },
   {
     icon: ShieldCheck,
-    title: "Preparo pré e pós-operatório",
+    title: "Clareza e segurança",
     description:
-      "Orientações claras e cuidados específicos para cada fase, garantindo segurança e recuperação adequada.",
+      "Explicações objetivas sobre o procedimento, cuidados, limites e possíveis riscos.",
   },
   {
     icon: HeartHandshake,
     title: "Acompanhamento próximo",
     description:
-      "Suporte durante todo o processo, com retornos programados até a estabilização dos resultados.",
+      "Suporte durante todo o processo, com retornos programados e orientações claras.",
   },
 ];
 
 const Differentials = () => {
-  const openWhatsApp = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'whatsapp_click',
-      eventCategory: 'engagement',
-      eventAction: 'click',
-      eventLabel: 'differentials_falar_equipe'
-    });
-    const msg = encodeURIComponent(
-      "Olá, gostaria de saber mais sobre o atendimento da Dra. Thayssa e agendar uma avaliação."
-    );
-    window.open(
-      `https://wa.me/5511932366856?text=${msg}&utm_source=meta&utm_medium=cpc&utm_campaign=lp_blefaro`,
-      "_blank"
-    );
-  };
-
   return (
     <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-background">
       <div className="container mx-auto max-w-6xl">
@@ -59,9 +43,9 @@ const Differentials = () => {
           className="text-center mb-8 sm:mb-12 space-y-3"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-graphite">
-            Diferenciais do <span className="text-primary">atendimento</span>
+            Um atendimento <span className="text-primary">individualizado</span>
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Como funciona o cuidado no consultório da Dra. Thayssa Barreto.
           </p>
         </motion.div>
@@ -101,11 +85,14 @@ const Differentials = () => {
         >
           <Button
             size="lg"
-            onClick={openWhatsApp}
-            className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto max-w-md mx-auto"
+            onClick={() => {
+              pushEvent("cta_click", { eventCategory: "engagement", eventLabel: "diferenciais_quero_entender_meu_caso" });
+              scrollToId("qualificacao");
+            }}
+            className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
           >
-            <MessageCircle className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform flex-shrink-0" />
-            <span className="truncate">Falar com a equipe</span>
+            Quero entender meu caso
+            <ChevronDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
           </Button>
         </motion.div>
       </div>
