@@ -1,15 +1,16 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Identification from "@/components/Identification";
 import VideoSection from "@/components/VideoSection";
-import WhatsAppCTA from "@/components/WhatsAppCTA";
-import FAQSection from "@/components/FAQSection";
-import DoctorBio from "@/components/DoctorBio";
-import Footer from "@/components/Footer";
-import Indications from "@/components/Indications";
+import Naturalness from "@/components/Naturalness";
 import AboutProcedure from "@/components/AboutProcedure";
-import Benefits from "@/components/Benefits";
+import Improvements from "@/components/Improvements";
 import Recovery from "@/components/Recovery";
 import Differentials from "@/components/Differentials";
+import DoctorBio from "@/components/DoctorBio";
+import FAQSection from "@/components/FAQSection";
+import Qualification from "@/components/Qualification";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -17,15 +18,16 @@ const Index = () => {
       <Header />
       <main className="pt-20">
         <Hero />
-        <Indications />
+        <Identification />
         <VideoSection />
+        <Naturalness />
         <AboutProcedure />
-        <Benefits />
+        <Improvements />
         <Recovery />
         <Differentials />
         <DoctorBio />
         <FAQSection />
-        <WhatsAppCTA />
+        <Qualification />
       </main>
       <Footer />
     </div>
