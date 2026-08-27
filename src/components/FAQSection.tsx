@@ -9,30 +9,34 @@ import {
 const FAQSection = () => {
   const faqs = [
     {
-      question: "A blefaroplastia é indicada para mim?",
+      question: "O resultado fica natural?",
       answer:
-        "A blefaroplastia pode ser indicada para pessoas que apresentam excesso de pele nas pálpebras superiores ou inferiores, bolsas de gordura sob os olhos, ou olhar cansado. No entanto, apenas uma avaliação médica individual pode determinar se o procedimento é adequado para o seu caso específico, considerando suas características anatômicas, expectativas e condições de saúde.",
+        "O objetivo do planejamento individualizado é preservar as características e a expressão de cada pessoa, buscando naturalidade. Como cada anatomia é diferente, os resultados variam e só podem ser discutidos em avaliação médica presencial.",
     },
     {
-      question: "Como é feita a anestesia e quanto tempo dura o procedimento?",
+      question: "As cicatrizes ficam visíveis?",
       answer:
-        "A blefaroplastia pode ser realizada com anestesia local associada à sedação leve, ou anestesia geral, dependendo da extensão do procedimento e preferência da paciente. O tempo cirúrgico varia entre 1 a 3 horas, conforme a técnica empregada e se envolve pálpebras superiores, inferiores ou ambas.",
+        "As incisões são planejadas para acompanhar as dobras naturais das pálpebras. A cicatrização evolui ao longo do tempo e depende de fatores individuais, como o tipo de pele e os cuidados no pós-operatório. Esse ponto é sempre explicado em consulta.",
     },
     {
-      question: "As cicatrizes ficam visíveis? O resultado é natural?",
+      question: "Como é o pós-operatório?",
       answer:
-        "As incisões são planejadas estrategicamente para ficarem escondidas nas dobras naturais das pálpebras (superiores) ou logo abaixo dos cílios inferiores. Com o tempo, as cicatrizes tornam-se praticamente imperceptíveis. O objetivo é sempre preservar a expressão natural do olhar, evitando resultados artificiais ou excessivamente esticados.",
+        "Envolve repouso, cuidados específicos e retornos programados. Inchaço e equimoses podem ocorrer nos primeiros dias. Os prazos para retomar as atividades são individuais e definidos pela equipe médica de acordo com cada caso.",
     },
     {
-      question: "Qual o tempo de recuperação?",
+      question: "Quanto custa a consulta de avaliação?",
       answer:
-        "O período de recuperação inicial é de cerca de 7 a 10 dias, quando os hematomas e inchaços mais evidentes diminuem significativamente. A maioria das pacientes retorna às atividades leves após esse período. Atividades físicas intensas devem ser evitadas por cerca de 3 a 4 semanas. O resultado final amadurece ao longo de 3 a 6 meses.",
+        "A consulta de avaliação com a Dra. Thayssa tem o valor de R$ 800. É nesse momento que seu caso é analisado individualmente, com explicações sobre possibilidades, cuidados e limites. Valores de procedimentos só são discutidos após a avaliação.",
     },
     {
-      question:
-        "É necessário fazer avaliação e exames? Quais são os riscos?",
+      question: "Onde é o atendimento?",
       answer:
-        "Sim, a avaliação pré-operatória com a cirurgiã plástica é fundamental. Exames laboratoriais e, em alguns casos, avaliação oftalmológica podem ser solicitados. Como qualquer cirurgia, existem riscos inerentes (infecção, sangramento, assimetria, alterações temporárias ou permanentes na função palpebral), que serão discutidos de forma transparente durante a consulta. A escolha de profissional qualificado e seguimento rigoroso das orientações minimizam consideravelmente esses riscos.",
+        "O atendimento é presencial, em Moema — São Paulo/SP: Alameda dos Maracatins, 1.217, Conj. 813.",
+    },
+    {
+      question: "Preciso de exames ou preparo antes?",
+      answer:
+        "A avaliação pré-operatória é fundamental. Exames e, em alguns casos, avaliações complementares podem ser solicitados. Como em qualquer cirurgia, existem riscos, que são discutidos de forma transparente durante a consulta.",
     },
   ];
 
@@ -62,7 +66,7 @@ const FAQSection = () => {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.08 }}
               >
                 <AccordionItem
                   value={`item-${index}`}
