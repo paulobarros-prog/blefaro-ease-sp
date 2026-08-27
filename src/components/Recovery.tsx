@@ -2,28 +2,28 @@ import { motion } from "framer-motion";
 
 const steps = [
   {
-    period: "Primeiras 48h",
-    title: "Repouso inicial",
+    period: "Primeiros dias",
+    title: "Repouso e cuidados",
     description:
-      "Aplicação de compressas frias e repouso com cabeceira elevada. Inchaço e equimoses são esperados.",
+      "Período de cuidados mais intensos, com repouso e orientações específicas. Inchaço e equimoses podem ocorrer.",
   },
   {
-    period: "1ª semana",
-    title: "Primeiros cuidados",
+    period: "Primeira semana",
+    title: "Retorno inicial",
     description:
-      "Retirada de pontos (geralmente entre 5 e 7 dias). Evitar esforço físico e exposição solar.",
+      "Fase de acompanhamento próximo, com retorno ao consultório conforme a orientação da equipe.",
   },
   {
-    period: "2ª a 4ª semana",
-    title: "Retorno gradual",
+    period: "Semanas seguintes",
+    title: "Retomada gradual",
     description:
-      "Redução significativa do inchaço. Retorno progressivo às atividades cotidianas.",
+      "As atividades vão sendo retomadas de forma progressiva, respeitando o ritmo de cada pessoa.",
   },
   {
-    period: "1 a 3 meses",
-    title: "Resultado visível",
+    period: "Meses seguintes",
+    title: "Evolução do processo",
     description:
-      "Cicatrização avançada. O resultado final começa a se definir gradualmente.",
+      "A cicatrização continua evoluindo ao longo do tempo, com acompanhamento programado.",
   },
 ];
 
@@ -36,17 +36,19 @@ const Recovery = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-12 space-y-3"
+          className="max-w-3xl mx-auto text-center mb-10 sm:mb-12 space-y-4"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-graphite">
-            Como é a <span className="text-primary">recuperação</span>?
+            Como é o <span className="text-primary">pós-operatório</span>
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Entenda o que esperar em cada fase do pós-operatório.
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+            O pós-operatório envolve cuidados, repouso e acompanhamento. Os prazos
+            e as orientações são individuais e definidos pela equipe médica de
+            acordo com cada caso — não existe um roteiro único para todas as pessoas.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-4 gap-4 sm:gap-6 relative">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {steps.map((s, i) => (
             <motion.div
               key={s.title}
@@ -69,17 +71,11 @@ const Recovery = () => {
           ))}
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-xs sm:text-sm text-muted-foreground text-center mt-8 max-w-3xl mx-auto px-4"
-        >
+        <p className="text-xs sm:text-sm text-muted-foreground text-center mt-8 max-w-3xl mx-auto px-4">
           <strong className="text-graphite">Orientações personalizadas:</strong>{" "}
-          cada paciente recebe instruções específicas conforme seu caso, garantindo
-          uma recuperação segura e adequada.
-        </motion.p>
+          cada paciente recebe instruções específicas conforme seu caso. A
+          avaliação médica individual é indispensável para indicação do procedimento.
+        </p>
       </div>
     </section>
   );
