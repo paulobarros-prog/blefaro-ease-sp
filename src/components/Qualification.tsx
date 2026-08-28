@@ -5,20 +5,65 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, Instagram, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { WHATSAPP_NUMBER, INSTAGRAM_URL, pushEvent } from "@/lib/lp";
 
-type StepKey = "regiao" | "incomodo" | "momento" | "intencao";
+type StepKey =
+  | "principal_incomodo"
+  | "momento"
+  | "localizacao"
+  | "interesse_consulta";
+
+const valueItems = [
+  {
+    title: "Avaliação individual completa",
+    text: "São analisadas sua anatomia, características da região dos olhos, principal incômodo, expectativas e histórico de saúde.",
+  },
+  {
+    title: "Planejamento personalizado",
+    text: "Se houver indicação, a Dra. Thayssa define a abordagem considerando as particularidades do seu caso, suas características e aquilo que é tecnicamente adequado.",
+  },
+  {
+    title: "Preparo pré e pós-operatório",
+    text: "Caso você prossiga com o procedimento, recebe orientações específicas para as diferentes etapas de preparação e recuperação.",
+  },
+  {
+    title: "Acompanhamento próximo",
+    text: "O cuidado continua após o procedimento, com retornos programados para acompanhamento da evolução.",
+  },
+];
 
 const questions: {
   key: StepKey;
   title: string;
   helper?: string;
   options: string[];
+  showValueBlock?: boolean;
 }[] = [
   {
-    key: "regiao",
+    key: "principal_incomodo",
+    title: "O que mais te incomoda hoje na região dos olhos?",
+    options: [
+      "Excesso de pele nas pálpebras superiores",
+      "Bolsas ou flacidez abaixo dos olhos",
+      "Olhar cansado ou pesado",
+      "Mais de uma dessas situações",
+      "Ainda não sei identificar",
+    ],
+  },
+  {
+    key: "momento",
+    title: "Quando você pensa em realizar uma avaliação?",
+    options: [
+      "Quero avaliar meu caso agora",
+      "Pretendo me organizar nos próximos 3 meses",
+      "Penso nisso para os próximos 6 meses",
+      "Ainda estou apenas pesquisando",
+    ],
+  },
+  {
+    key: "localizacao",
     title: "Onde você mora hoje?",
     helper: "O atendimento é presencial, em Moema — São Paulo/SP.",
     options: [
-      "São Paulo – Capital",
+      "São Paulo — Capital",
       "Grande São Paulo",
       "Interior de São Paulo",
       "Outro estado (posso viajar)",
@@ -26,40 +71,30 @@ const questions: {
     ],
   },
   {
-    key: "incomodo",
-    title: "O que mais te incomoda na região dos olhos?",
-    options: [
-      "Excesso de pele nas pálpebras superiores",
-      "Bolsas ou flacidez abaixo dos olhos",
-      "Olhar cansado ou pesado",
-      "Ainda não sei identificar",
-    ],
-  },
-  {
-    key: "momento",
-    title: "Desde quando isso te incomoda?",
-    options: [
-      "Comecei a perceber recentemente",
-      "Há alguns meses",
-      "Há mais de um ano",
-      "Há muitos anos",
-    ],
-  },
-  {
-    key: "intencao",
-    title: "Qual é o seu momento agora?",
-    helper:
-      "A consulta de avaliação com a Dra. Thayssa tem o valor de R$ 800 e é o momento em que seu caso é analisado individualmente.",
+    key: "interesse_consulta",
+    title:
+      "Considerando esse formato de atendimento e o investimento de R$ 800 na consulta, qual é o seu momento agora?",
+    showValueBlock: true,
     options: [
       "Quero conversar sobre uma avaliação",
       "Preciso me organizar, mas tenho interesse",
-      "Só estou buscando informação por enquanto",
+      "Ainda não sei se é o momento",
+      "Só estou buscando informações por enquanto",
     ],
   },
 ];
 
-const NOT_QUALIFIED_REGION = "Outro estado (não posso viajar)";
-const INFO_ONLY = "Só estou buscando informação por enquanto";
+const QUALIFIED_LOCATIONS = [
+  "São Paulo — Capital",
+  "Grande São Paulo",
+  "Interior de São Paulo",
+  "Outro estado (posso viajar)",
+];
+
+const QUALIFIED_INTENTS = [
+  "Quero conversar sobre uma avaliação",
+  "Preciso me organizar, mas tenho interesse",
+];
 
 const Qualification = () => {
   const [step, setStep] = useState(0);
@@ -69,9 +104,9 @@ const Qualification = () => {
   const current = questions[step];
 
   const evaluate = (all: Partial<Record<StepKey, string>>) => {
-    const regionOk = all.regiao !== NOT_QUALIFIED_REGION;
-    const intentOk = all.intencao !== INFO_ONLY;
-    return regionOk && intentOk ? "qualified" : "not-qualified";
+    const locationOk = QUALIFIED_LOCATIONS.includes(all.localizacao ?? "");
+    const intentOk = QUALIFIED_INTENTS.includes(all.interesse_consulta ?? "");
+    return locationOk && intentOk ? "qualified" : "not-qualified";
   };
 
   const select = (value: string) => {
@@ -92,7 +127,7 @@ const Qualification = () => {
     setResult(outcome);
     pushEvent(outcome === "qualified" ? "qualificacao_aprovada" : "qualificacao_reprovada", {
       eventCategory: "qualificacao",
-      eventLabel: all.regiao,
+      eventLabel: all.localizacao,
     });
   };
 
@@ -117,12 +152,13 @@ const Qualification = () => {
     });
     const msg = encodeURIComponent(
       [
-        "Olá! Vim pela página sobre blefaroplastia da Dra. Thayssa e respondi as perguntas:",
-        `• Região: ${answers.regiao}`,
-        `• Principal incômodo: ${answers.incomodo}`,
-        `• Tempo: ${answers.momento}`,
-        `• Momento: ${answers.intencao}`,
-        "Gostaria de falar sobre a avaliação.",
+        "Olá! Vim pela página de Blefaroplastia da Dra. Thayssa e gostaria de entender como funciona a consulta.",
+        "",
+        "Respondi às perguntas iniciais da página:",
+        `Principal incômodo: ${answers.principal_incomodo}`,
+        `Momento: ${answers.momento}`,
+        `Localização: ${answers.localizacao}`,
+        `Consulta particular de R$ 800: ${answers.interesse_consulta}`,
       ].join("\n"),
     );
     window.open(
@@ -186,6 +222,51 @@ const Qualification = () => {
                   <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                     Pergunta {step + 1} de {questions.length}
                   </p>
+
+                  {current.showValueBlock && (
+                    <div className="space-y-4 rounded-2xl bg-accent/20 p-4 sm:p-5 mb-2">
+                      <div className="space-y-2">
+                        <h3 className="text-lg sm:text-2xl font-semibold text-graphite">
+                          Como funciona a avaliação com a Dra. Thayssa?
+                        </h3>
+                        <p className="inline-block rounded-full bg-primary px-4 py-1.5 text-sm sm:text-base font-semibold text-primary-foreground">
+                          Consulta particular: R$ 800
+                        </p>
+                        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                          A consulta é o momento em que a Dra. Thayssa avalia
+                          individualmente o seu caso para entender o que realmente
+                          está causando o incômodo na região dos olhos e quais
+                          possibilidades podem fazer sentido para você.
+                        </p>
+                      </div>
+
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        {valueItems.map((item) => (
+                          <div
+                            key={item.title}
+                            className="rounded-2xl bg-background p-4 space-y-1.5"
+                          >
+                            <div className="flex items-start gap-2">
+                              <CheckCircle2 className="h-4 w-4 mt-0.5 text-primary shrink-0" />
+                              <p className="text-sm sm:text-base font-semibold text-graphite">
+                                {item.title}
+                              </p>
+                            </div>
+                            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                              {item.text}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-graphite/80 italic">
+                        Os retornos programados de acompanhamento pré e
+                        pós-operatório previstos pela Dra. Thayssa estão incluídos
+                        no atendimento.
+                      </p>
+                    </div>
+                  )}
+
                   <h3 className="text-lg sm:text-2xl font-semibold text-graphite">
                     {current.title}
                   </h3>
@@ -229,14 +310,19 @@ const Qualification = () => {
               >
                 <CheckCircle2 className="w-12 h-12 text-primary mx-auto" />
                 <h3 className="text-xl sm:text-2xl font-semibold text-graphite">
-                  Seu perfil faz sentido para uma avaliação
+                  Obrigada pelas suas respostas
                 </h3>
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Fale agora com a equipe da Dra. Thayssa pelo WhatsApp para
-                  esclarecer dúvidas e verificar as datas disponíveis. A consulta de
-                  avaliação tem o valor de <strong className="text-graphite">R$ 800</strong> e é
-                  o momento em que seu caso é analisado individualmente — somente a
-                  avaliação médica pode indicar o procedimento.
+                  Pelo momento que você informou, o próximo passo pode ser conversar
+                  com a equipe da Dra. Thayssa para entender melhor como funciona a
+                  consulta, esclarecer suas dúvidas e verificar as datas disponíveis.
+                </p>
+                <p className="inline-block rounded-full bg-primary px-5 py-2 text-sm sm:text-base font-semibold text-primary-foreground">
+                  Consulta particular: R$ 800
+                </p>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  A indicação de Blefaroplastia ou de qualquer outra abordagem
+                  somente pode ser definida após avaliação médica individual.
                 </p>
                 <Button
                   size="lg"
@@ -266,10 +352,14 @@ const Qualification = () => {
                   Que bom que você está se informando
                 </h3>
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  Pelas suas respostas, este pode não ser o momento ideal para uma
-                  avaliação presencial em São Paulo. Continue acompanhando o
-                  conteúdo da Dra. Thayssa no Instagram: lá ela compartilha
-                  informações sobre cirurgia plástica e cuidados com o olhar.
+                  Pelo momento que você informou, talvez uma avaliação presencial
+                  ainda não seja o próximo passo mais adequado para você.
+                  <br />
+                  <br />
+                  Enquanto isso, você pode continuar acompanhando os conteúdos da
+                  Dra. Thayssa no Instagram para entender melhor as possibilidades
+                  relacionadas ao rejuvenescimento do olhar e esclarecer suas
+                  dúvidas.
                 </p>
                 <Button
                   size="lg"
