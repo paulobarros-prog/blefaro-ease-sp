@@ -44,7 +44,7 @@ const Recovery = () => {
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             O pós-operatório envolve cuidados, repouso e acompanhamento. Os prazos
             e as orientações são individuais e definidos pela equipe médica de
-            acordo com cada caso — não existe um roteiro único para todas as pessoas.
+             acordo com cada caso, não existe um roteiro único para todas as pessoas.
           </p>
         </motion.div>
 

@@ -44,9 +44,9 @@ const Identification = () => {
             Quando o olhar já não representa <span className="text-primary">como você se sente</span>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Com o passar dos anos, mudanças na região dos olhos podem fazer com
-            que a aparência pareça mais cansada, pesada ou envelhecida — mesmo
-            quando você está bem e se sente ativa.
+             Com o passar dos anos, mudanças na região dos olhos podem fazer com
+             que a aparência pareça mais cansada, pesada ou envelhecida, mesmo
+             quando você está bem e se sente ativa.
           </p>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             Excesso de pele, bolsas e outras alterações ao redor dos olhos podem
