@@ -38,8 +38,8 @@ const Naturalness = () => {
             E se o resultado ficar <span className="text-primary">artificial</span>?
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Essa é uma das dúvidas mais comuns de quem considera a Blefaroplastia.
-            Ninguém quer parecer outra pessoa — o desejo é continuar sendo você,
+             Essa é uma das dúvidas mais comuns de quem considera a Blefaroplastia.
+             Ninguém quer parecer outra pessoa, o desejo é continuar sendo você,
             com um olhar mais descansado.
           </p>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">

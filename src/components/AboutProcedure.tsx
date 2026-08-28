@@ -10,7 +10,7 @@ const steps = [
   {
     title: "Planejamento do caso",
     description:
-      "Definição da técnica adequada — pálpebras superiores, inferiores ou ambas — conforme cada situação.",
+       "Definição da técnica adequada, pálpebras superiores, inferiores ou ambas, conforme cada situação.",
   },
   {
     title: "Procedimento",
