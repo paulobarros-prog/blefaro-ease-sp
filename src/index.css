@@ -111,11 +111,26 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "kern" 1;
   }
-  
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  iframe {
+    max-width: 100%;
+  }
+
   html {
     scroll-behavior: smooth;
   }
