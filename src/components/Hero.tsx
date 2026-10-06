@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, PlayCircle } from "lucide-react";
 import heroImage from "@/assets/dra-thayssa-hero.jpg";
-import { pushEvent, scrollToId } from "@/lib/lp";
+import { pushEvent, scrollToId, FORM_URL } from "@/lib/lp";
 
 const Hero = () => {
   const goToQualification = () => {
     pushEvent("cta_click", { eventCategory: "engagement", eventLabel: "hero_quero_entender_meu_caso" });
-    scrollToId("qualificacao");
+    window.open(FORM_URL, "_blank", "noopener,noreferrer");
   };
 
   const goToVideo = () => {
