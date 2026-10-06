@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { UserCheck, ClipboardList, ShieldCheck, HeartHandshake, ChevronDown } from "lucide-react";
-import { pushEvent, scrollToId } from "@/lib/lp";
+import { pushEvent, scrollToId, FORM_URL } from "@/lib/lp";
 
 const items = [
   {
@@ -87,7 +87,7 @@ const Differentials = () => {
             size="lg"
             onClick={() => {
               pushEvent("cta_click", { eventCategory: "engagement", eventLabel: "diferenciais_quero_entender_meu_caso" });
-              scrollToId("qualificacao");
+              window.open(FORM_URL, "_blank", "noopener,noreferrer");
             }}
             className="group rounded-2xl px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
           >
